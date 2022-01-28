@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React  from "react";
+import { useSpring, animated } from "@react-spring/web";
+import "./styles.css";
 
-function App() {
+export default function App() {
+  const [toggle, setToggle] = React.useState(true);
+  const styles = useSpring({
+    opacity: toggle ? 1 : 0
+  });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <animated.h1 style={styles} onclick={() => setToggle(!toggle)}>
+        Hello CodeSandbox
+      </animated.h1>
     </div>
   );
-}
 
-export default App;
+  // const styles = useSpring({
+  //   from: {
+  //     opacity: 0,
+  //     color: "pink",
+  //     y: 20,
+  //     scale: 0.8
+  //   },
+  //   to: {
+  //     opacity: 1,
+  //     color: "blue",
+  //     y: 0,
+  //     scale: 1
+  //   }
+  // });
+  // return (
+  //   <div className="App">
+  //     <animated.h1 style={styles}>Hello CodeSandbox</animated.h1>
+  //   </div>
+  // );
+}
